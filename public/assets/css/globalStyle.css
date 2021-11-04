@@ -29,7 +29,7 @@ a {
     border-radius: 1rem;
 }
 
-#loginForm {
+.loginForm {
     background-color: #fae8e0;
     width: 40%;
     margin: 4rem auto;
@@ -38,27 +38,27 @@ a {
     box-shadow: 7px 7px 7px darkgray;
 }
 
-#loginForm h2 {
+.loginForm h2 {
     text-align: center;
     color: #ef7c8e;
     font-style: italic;
     text-decoration-line: underline;
 }
 
-#loginForm div {
+.loginForm div {
     display: flex;
     width: 100%;
     flex-direction: column;
     margin: 2rem 0;
 }
 
-#loginForm label {
+.loginForm label {
     text-align: center;
     color: #343434;
     margin-bottom: 1.5rem;
 }
 
-#loginForm div input {
+.loginForm div input {
     height: 4rem;
     width: 80%;
     margin: 0 auto;
@@ -83,16 +83,16 @@ a {
     opacity: 0.7;
 }
 
-#loginForm p {
+.loginForm p {
     text-align: center;
     margin-top: 3rem;
 }
 
-#loginForm p a {
+.loginForm p a {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-#loginForm p a:hover {
+.loginForm p a:hover {
     opacity: 0.7;
 }

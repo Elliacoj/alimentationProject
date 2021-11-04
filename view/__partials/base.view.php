@@ -14,5 +14,6 @@
 <body>
 <?php include "menu.view.php" ?>
 <?= $html ?>
+    <script src="/assets/js/create-login.js"></script>
 </body>
 </html>
