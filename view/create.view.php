@@ -8,7 +8,7 @@ if(isset($_SESSION['id'])) {
     <form action="index.php?controller=user&action=create" method="POST">
         <div>
             <label for="createMail">Adresse mail:</label>
-            <input type="text" id="createMail" name="createMail" title="Votre adresse mail" required>
+            <input type="email" id="createMail" name="createMail" title="Votre adresse mail" required>
         </div>
         <div>
             <label for="createPassword">Mot de passe:</label>

@@ -52,3 +52,4 @@ function opacityButton() {
         $buttonCreate.style.opacity = "0.7";
     }
 }
+

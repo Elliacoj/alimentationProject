@@ -3,7 +3,7 @@
     <form action="index.php?controller=user&action=login" method="POST">
         <div>
             <label for="loginMail">Adresse mail:</label>
-            <input type="text" id="loginMail" name="loginMail" title="Votre adresse mail" required>
+            <input type="email" id="loginMail" name="loginMail" title="Votre adresse mail" required>
         </div>
         <div>
             <label for="loginPassword">Mot de passe:</label>
