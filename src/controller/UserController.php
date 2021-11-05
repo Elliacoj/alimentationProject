@@ -4,6 +4,7 @@ namespace Amaur\App\controller;
 
 use Amaur\App\entity\User;
 use Amaur\App\manager\DB;
+use Amaur\App\manager\PersonalDataManager;
 use Amaur\App\manager\UserManager;
 
 class UserController extends Controller {
@@ -16,9 +17,8 @@ class UserController extends Controller {
             self::renders("login", "Connection");
         }
         else {
-            $user = UserManager::search(filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT));
-            $personalData = PersonalData::search(filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT));
-            self::renders("profile", "Profil", ["user" => $user, "personalData" => $personalData]);
+            $personalData = PersonalDataManager::searchUserFk(filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT));
+            self::renders("profile", "Profil", ["personalData" => $personalData]);
         }
     }
 
@@ -30,9 +30,8 @@ class UserController extends Controller {
             self::renders("create", "Création de compte");
         }
         else {
-            $user = UserManager::getManager()->search(filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT));
-            $personalData = PersonalData::search(filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT));
-            self::renders("profile", "Profil", ["user" => $user, "personalData" => $personalData]);
+            $personalData = PersonalDataManager::searchUserFk(filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT));
+            self::renders("profile", "Profil", ["personalData" => $personalData]);
         }
     }
 
@@ -56,6 +55,19 @@ class UserController extends Controller {
         }
         else {
             header("Location: index.php");
+        }
+    }
+
+    public function login() {
+        $mail = filter_var($_POST['loginMail'], FILTER_SANITIZE_EMAIL);
+        $password = filter_var($_POST['loginPassword'], FILTER_SANITIZE_STRING);
+        $user = UserManager::searchMail($mail);
+        if($user !== null && password_verify($password, $user->getPassword())) {
+            $_SESSION['id'] = $user->getId();
+            header("Location: index.php?error=2");
+        }
+        else {
+            header("Location: index.php?error=3");
         }
     }
 }

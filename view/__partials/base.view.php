@@ -13,7 +13,9 @@
 </head>
 <body>
 <?php include "menu.view.php" ?>
+<?php include "error.view.php" ?>
 <?= $html ?>
     <script src="/assets/js/create-login.js"></script>
+    <script src="/assets/js/globalScript.js"></script>
 </body>
 </html>

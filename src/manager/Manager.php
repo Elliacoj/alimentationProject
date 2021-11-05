@@ -55,9 +55,12 @@ class Manager {
 
         if($ndb->execute() && $result = $ndb->fetch()) {
             $object = new $class();
-
             foreach ($result as $title => $value) {
                 if(strpos($title, "_fk")){
+
+                    $subClass = "Amaur\\App\\manager\\" . ucfirst(substr($title, 0, (strpos($title, "_")))) . "Manager";
+                    $subClass = new $subClass();
+                    $value = $subClass->search($value);
                     $title = str_replace("_fk", "Fk", $title);
                 }
 

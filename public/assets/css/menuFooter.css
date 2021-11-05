@@ -31,3 +31,24 @@
 #menuDiv i {
     font-size: 3rem;
 }
+
+.errorDiv {
+    width: 60%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 1rem;
+    font-style: italic;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.errorGreen {
+    background-color: greenyellow;
+}
+
+.errorRed {
+    background-color: orangered;
+}

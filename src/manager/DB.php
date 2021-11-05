@@ -15,10 +15,10 @@ class DB {
      * Construct DB
      */
     public function __construct() {
-        if(file_exists("../config/ConfigDev.php") && $_SERVER['SERVER_NAME'] === "self.eat.dev.elliacoj.be") {
+        if(class_exists("Amaur\\App\\config\\ConfigDev") && $_SERVER['SERVER_NAME'] == "self.eat.dev.elliacoj.be") {
             [$host, $dbName, $userName, $password] = (new ConfigDev())->getConfig();
         }
-        elseif($_SERVER['SERVER_NAME'] === "localhost") {
+        elseif($_SERVER['SERVER_NAME'] == "localhost") {
             [$host, $dbName, $userName, $password] = (new Config())->getConfig();
         }
         else {

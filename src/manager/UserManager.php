@@ -29,7 +29,7 @@ class UserManager extends Manager {
 
     /**
      * Return a user or null
-     * @param $mail
+     * @param $id
      * @return Object|null
      */
     public static function search($id):?Object {
