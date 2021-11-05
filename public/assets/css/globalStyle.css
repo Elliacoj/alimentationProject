@@ -36,11 +36,11 @@ a {
     padding: 4rem;
     border-radius: 2rem;
     box-shadow: 7px 7px 7px darkgray;
+    color: #912b2b;
 }
 
 .loginForm h2 {
     text-align: center;
-    color: #ef7c8e;
     font-style: italic;
     text-decoration-line: underline;
 }
@@ -54,7 +54,7 @@ a {
 
 .loginForm label {
     text-align: center;
-    color: #343434;
+    color: #912b2b;
     margin-bottom: 1.5rem;
 }
 
@@ -95,4 +95,48 @@ a {
 
 .loginForm p a:hover {
     opacity: 0.7;
+}
+
+#profileDiv {
+    width: 60%;
+    margin: 5rem auto 0 auto;
+    border-radius: 2rem;
+    box-shadow: 7px 7px 7px darkgray;
+    background-color: #fae8e0;
+    display: flex;
+    flex-wrap: wrap;
+    color: #912b2b;
+}
+#physicalDiv, #personalDiv {
+    width: 50%;
+    padding: 2rem;
+}
+
+#profileDiv h2 {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    text-decoration-line: underline;
+    padding: 2rem;
+}
+
+button {
+    display: block;
+    margin: 1rem auto;
+    width: 20rem;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: #ef7c8e;
+    font-weight: bold;
+    color: #912b2b;
+}
+
+button:hover {
+    color: orangered;
+}
+
+#profileDiv div div {
+    margin-left: 20%;
+    padding: 1rem 0;
 }

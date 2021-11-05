@@ -12,6 +12,7 @@
     border: 1px solid #b6e2d3;
     border-top: none;
     border-radius: 0 0 1rem 1rem;
+
 }
 
 #foodDiv:hover, #homeDiv:hover, #trainingDiv:hover, #loginDiv:hover {
@@ -30,6 +31,7 @@
 
 #menuDiv i {
     font-size: 3rem;
+    color: #912b2b;
 }
 
 .errorDiv {

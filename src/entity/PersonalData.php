@@ -2,11 +2,14 @@
 
 namespace Amaur\App\entity;
 
+use Amaur\App\manager\PersonalDataManager;
+
 class PersonalData {
     private ?int $id;
     private ?string $firstname;
     private ?string $lastname;
     private ?string $birthday;
+    private ?int $sex;
     private ?string $weight;
     private ?string $size;
     private ?string $size_neck;
@@ -18,19 +21,21 @@ class PersonalData {
      * @param string|null $firstname
      * @param string|null $lastname
      * @param string|null $birthday
+     * @param int|null $sex
      * @param string|null $weight
      * @param string|null $size
      * @param string|null $size_neck
      * @param string|null $size_stomach
      * @param User|null $userFk
      */
-    public function __construct(int $id = null, string $firstname = null, string $lastname = null, string $birthday = null, string $weight = null,
-                                string $size = null, string $size_neck = null, string $size_stomach = null, User $userFk = null)
+    public function __construct(int $id = null, string $firstname = null, string $lastname = null, string $birthday = null, int $sex = null,
+                                string $weight = null, string $size = null, string $size_neck = null, string $size_stomach = null, User $userFk = null)
     {
         $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->birthday = $birthday;
+        $this->sex = $sex;
         $this->weight = $weight;
         $this->size = $size;
         $this->size_neck = $size_neck;
@@ -115,6 +120,26 @@ class PersonalData {
     public function setBirthday(?string $birthday): PersonalData
     {
         $this->birthday = $birthday;
+        return $this;
+    }
+
+    /**
+     * Return the sex of PersonalData
+     * @return int|null
+     */
+    public function getSex(): ?int
+    {
+        return $this->sex;
+    }
+
+    /**
+     * Set the sex of PersonalData
+     * @param int|null $sex
+     * @return PersonalData
+     */
+    public function setSex(?int $sex): PersonalData
+    {
+        $this->sex = $sex;
         return $this;
     }
 
