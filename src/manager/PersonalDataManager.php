@@ -23,7 +23,13 @@ class PersonalDataManager extends Manager {
         $id = $personalData->getId();
         $firstname = $personalData->getFirstname();
         $lastname = $personalData->getLastname();
-        $birthday = $personalData->getBirthday();
+        if($personalData->getBirthday() === "") {
+            $birthday = null;
+        }
+        else {
+            $birthday = $personalData->getBirthday();
+        }
+
         $sex = $personalData->getSex();
         $weight = $personalData->getWeight();
         $size = $personalData->getSize();

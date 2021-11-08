@@ -10,8 +10,8 @@ header('Content-Type: application/json');
 $request = $_SERVER["REQUEST_METHOD"];
 
 switch ($request) {
-    case "UPDATE":
-        echo json_encode(updatePersonalData(json_decode("php://input")));
+    case "PUT":
+        echo json_encode(updatePersonalData(json_decode(file_get_contents("php://input"))));
         break;
     case "SEARCH":
         echo json_encode(searchPersonalData());
@@ -24,7 +24,7 @@ switch ($request) {
  * @return bool
  */
 function updatePersonalData($data): bool {
-    if($_SESSION['id'] === $data->idUser) {
+    if(isset($_SESSION['id'])) {
         $personalData = PersonalDataManager::searchUserFk($_SESSION['id']);
         $personalData->setFirstname($data->firstname)
             ->setLastname($data->lastname)
@@ -46,7 +46,7 @@ function searchPersonalData():?array {
     if($personalData !== null) {
         $array = [
             "firstname" => $personalData->getFirstname(), "lastname" => $personalData->getLastname(), "birthday" => $personalData->getBirthday(),
-            "sex" => $personalData->getSex(), "weight" => $personalData->getWeight(), "size" => $personalData->getSize(), "sizeNeck" => $personalData->getSizeNeck(),
+            "sex" => $personalData->getSex(), "size" => $personalData->getSize(), "weight" => $personalData->getWeight(), "sizeNeck" => $personalData->getSizeNeck(),
             "sizeStomach" => $personalData->getSizeStomach()
         ];
     }

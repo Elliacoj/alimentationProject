@@ -23,12 +23,13 @@ class ModalWindows {
 
         this.container.appendChild(h2);
 
-        for (let name in this.data) {
+        for (let name in this.data[0]) {
             let div = document.createElement("div");
             let label = document.createElement("label");
 
             label.style.cssText = "width: 100%; display: block; text-align: center;";
             label.innerHTML = name;
+            div.className = "divModal";
             div.appendChild(label);
 
             if(!name.indexOf("Sex")) {
@@ -50,8 +51,8 @@ class ModalWindows {
                 select.appendChild(optionF);
                 div.appendChild(select);
 
-                if(this.data[name] !== "") {
-                    select.selectedIndex = (this.data[name] + 1);
+                if(this.data[0][name] !== "") {
+                    select.selectedIndex = (this.data[0][name] + 1);
                 }
             }
             else {
@@ -66,7 +67,7 @@ class ModalWindows {
                 input.style.cssText = "width: 60%; display: block; margin: 1rem auto; padding: 1rem; font-size: 2rem;";
 
 
-                input.value = this.data[name];
+                input.value = this.data[0][name];
 
 
                 div.appendChild(input);
@@ -91,7 +92,21 @@ class ModalWindows {
         });
     }
 
-    update() {
-        let xml = new XMLHttpRequest()
+    update(file) {
+        let container = this.container;
+        let dataModal = this.data[1];
+        this.buttonConfirm.addEventListener("click", function () {
+            let xml = new XMLHttpRequest();
+            xml.responseType = "json";
+            xml.open("PUT", file);
+
+            let divData = document.querySelectorAll(".divModal");
+            let data = {};
+            for(let x = 0; x < divData.length; x++) {
+                data[dataModal[x]] = divData[x].lastChild.value;
+            }
+            xml.send(JSON.stringify(data));
+            container.remove();
+        })
     }
 }
