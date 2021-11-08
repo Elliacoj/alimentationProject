@@ -12,7 +12,7 @@ class UserManager extends Manager {
      * @return bool
      */
     public static function create(User $user):bool {
-        return self::createObject(
+        return self::createUpdate(
             "INSERT INTO ellia_user(mail, password) VALUES(:mail, :password)",
             ["mail" => $user->getMail(), "password" => $user->getPassword()]
         );

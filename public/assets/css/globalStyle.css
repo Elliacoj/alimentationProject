@@ -140,3 +140,7 @@ button:hover {
     margin-left: 20%;
     padding: 1rem 0;
 }
+
+#profileDiv span {
+    color: #2aabda;
+}

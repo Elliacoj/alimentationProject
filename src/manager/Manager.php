@@ -20,12 +20,12 @@ class Manager {
     }
 
     /**
-     * Create an object
+     * Create or update an object
      * @param string $sql
      * @param array $data
      * @return bool
      */
-    public static function createObject(string $sql,array $data):bool {
+    public static function createUpdate(string $sql,array $data):bool {
         $ndb = DB::getInstance()->prepare($sql);
         foreach ($data as $title => $value) {
             $ndb->bindValue($title, $value);

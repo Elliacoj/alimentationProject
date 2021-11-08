@@ -1,5 +1,8 @@
 let errorDiv = document.querySelector(".errorDiv");
 
+/**
+ * Animation for error view
+ */
 if(errorDiv) {
     setTimeout(function () {
         errorDiv.animate([

@@ -17,5 +17,7 @@
 <?= $html ?>
     <script src="/assets/js/create-login.js"></script>
     <script src="/assets/js/globalScript.js"></script>
+    <script src="/assets/js/ModalWindows.js" type="module"></script>
+    <script src="/assets/js/ajax.js" type="module"></script>
 </body>
 </html>
