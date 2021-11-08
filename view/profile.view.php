@@ -30,6 +30,6 @@ $sizeStomach = (is_null($data['personalData']->getSizeStomach()) ? '': $data['pe
         <div>Tour de cou: <span><?= $sizeNeck ?></span></div>
         <div>Tour de ventre: <span><?= $sizeStomach ?></span></div>
     </div>
-    <button id="updateProfile">Mettre à jour</button>
+    <button id="updateProfile" data-idUser="<?= $_SESSION['id'] ?>">Mettre à jour</button>
     <button>Se déconnecter</button>
 </div>

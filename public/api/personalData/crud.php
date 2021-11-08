@@ -13,6 +13,9 @@ switch ($request) {
     case "UPDATE":
         echo json_encode(updatePersonalData(json_decode("php://input")));
         break;
+    case "SEARCH":
+        echo json_encode(searchPersonalData());
+        break;
 }
 
 /**
@@ -34,4 +37,19 @@ function updatePersonalData($data): bool {
         return PersonalDataManager::update($personalData);
     }
     return false;
+}
+
+function searchPersonalData():?array {
+    $array = null;
+    $personalData = PersonalDataManager::searchUserFk($_SESSION['id']);
+
+    if($personalData !== null) {
+        $array = [
+            "firstname" => $personalData->getFirstname(), "lastname" => $personalData->getLastname(), "birthday" => $personalData->getBirthday(),
+            "sex" => $personalData->getSex(), "weight" => $personalData->getWeight(), "size" => $personalData->getSize(), "sizeNeck" => $personalData->getSizeNeck(),
+            "sizeStomach" => $personalData->getSizeStomach()
+        ];
+    }
+
+    return $array;
 }
