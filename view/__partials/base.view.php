@@ -19,5 +19,7 @@
     <script src="/assets/js/globalScript.js"></script>
     <script src="/assets/js/ModalWindows.js" type="module"></script>
     <script src="/assets/js/ajax.js" type="module"></script>
+    <script src="/node_modules/chart.js/dist/chart.js"></script>
+    <script src="/assets/js/stat.js" type="module"></script>
 </body>
 </html>

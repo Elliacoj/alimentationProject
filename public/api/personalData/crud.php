@@ -33,7 +33,8 @@ function updatePersonalData($data): bool {
             ->setWeight($data->weight)
             ->setSize($data->size)
             ->setSizeNeck($data->sizeNeck)
-            ->setSizeStomach($data->sizeStomach);
+            ->setSizeStomach($data->sizeStomach)
+            ->setSizeHaunch($data->sizeHaunch);
         return PersonalDataManager::update($personalData);
     }
     return false;
@@ -47,7 +48,7 @@ function searchPersonalData():?array {
         $array = [
             "firstname" => $personalData->getFirstname(), "lastname" => $personalData->getLastname(), "birthday" => $personalData->getBirthday(),
             "sex" => $personalData->getSex(), "size" => $personalData->getSize(), "weight" => $personalData->getWeight(), "sizeNeck" => $personalData->getSizeNeck(),
-            "sizeStomach" => $personalData->getSizeStomach()
+            "sizeStomach" => $personalData->getSizeStomach(), "sizeHaunch" => $personalData->getSizeHaunch()
         ];
     }
 

@@ -2,6 +2,7 @@
 
 namespace Amaur\App\controller;
 
+use Amaur\App\entity\PersonalData;
 use Amaur\App\entity\User;
 use Amaur\App\manager\DB;
 use Amaur\App\manager\PersonalDataManager;
@@ -45,8 +46,12 @@ class UserController extends Controller {
 
             if(UserManager::searchMail($mail) === null) {
                 $user = new User(null, $mail, $password);
+                $personalData = new PersonalData();
                 UserManager::create($user);
+
                 $_SESSION['id'] = DB::getInstance()->lastInsertId();
+                $personalData->setUserFk(UserManager::search($_SESSION['id']));
+                PersonalDataManager::create($personalData);
                 header("Location: index.php?error=0");
             }
             else {
@@ -74,6 +79,9 @@ class UserController extends Controller {
         }
     }
 
+    /**
+     * Disconnect a user
+     */
     public function logout() {
         if(isset($_SESSION['id'])) {
             $_SESSION = array();

@@ -14,6 +14,7 @@ class PersonalData {
     private ?string $size;
     private ?string $size_neck;
     private ?string $size_stomach;
+    private ?string $size_haunch;
     private ?User $userFk;
 
     /**
@@ -26,10 +27,12 @@ class PersonalData {
      * @param string|null $size
      * @param string|null $size_neck
      * @param string|null $size_stomach
+     * @param string|null $size_haunch
      * @param User|null $userFk
      */
     public function __construct(int $id = null, string $firstname = null, string $lastname = null, string $birthday = null, int $sex = null,
-                                string $weight = null, string $size = null, string $size_neck = null, string $size_stomach = null, User $userFk = null)
+                                string $weight = null, string $size = null, string $size_neck = null, string $size_stomach = null,string $size_haunch = null,
+                                User $userFk = null)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -40,6 +43,7 @@ class PersonalData {
         $this->size = $size;
         $this->size_neck = $size_neck;
         $this->size_stomach = $size_stomach;
+        $this->size_haunch = $size_haunch;
         $this->userFk = $userFk;
     }
 
@@ -220,6 +224,26 @@ class PersonalData {
     public function setSizeStomach(?string $size_stomach): PersonalData
     {
         $this->size_stomach = $size_stomach;
+        return $this;
+    }
+
+    /**
+     * Return size haunch of PersonalData
+     * @return string|null
+     */
+    public function getSizeHaunch(): ?string
+    {
+        return $this->size_haunch;
+    }
+
+    /**
+     * Set the size haunch of PersonalData
+     * @param string|null $size_haunch
+     * @return PersonalData
+     */
+    public function setSizeHaunch(?string $size_haunch): PersonalData
+    {
+        $this->size_haunch = $size_haunch;
         return $this;
     }
 

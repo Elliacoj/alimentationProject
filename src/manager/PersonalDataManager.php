@@ -15,6 +15,26 @@ class PersonalDataManager extends Manager {
     }
 
     /**
+     * Create a personalData into User table
+     * @param PersonalData $personalData
+     * @return bool
+     */
+    public static function create(PersonalData $personalData):bool {
+        return self::createUpdate(
+            "INSERT INTO ellia_personal_data(user_fk) VALUES(:userFk)",
+            ["userFk" => $personalData->getUserFk()->getId()]
+        );
+    }
+
+    /**
+     * Return all personal data or null
+     * @return array
+     */
+    public static function get():array {
+        return self::getObject("SELECT * FROM ellia_personal_data", "PersonalData");
+    }
+
+    /**
      * Update a personal data of user
      * @param PersonalData $personalData
      * @return bool
@@ -35,15 +55,16 @@ class PersonalDataManager extends Manager {
         $size = $personalData->getSize();
         $sizeNeck = $personalData->getSizeNeck();
         $sizeStomach = $personalData->getSizeStomach();
+        $sizeHaunch = $personalData->getSizeHaunch();
 
         return self::createUpdate(
             "UPDATE ellia_personal_data 
                     SET firstname = :firstname, lastname = :lastname, birthday = :birthday, sex = :sex, weight = :weight, size = :size,
-                    size_neck =:sizeNeck, size_stomach =:sizeStomach 
+                    size_neck =:sizeNeck, size_stomach =:sizeStomach, size_haunch =:sizeHaunch 
                     WHERE id =:id",
             [
                 "id" => $id, "firstname" => $firstname, "lastname" => $lastname, "birthday" => $birthday, "sex" =>$sex, "size" => $size,
-                "weight" => $weight, "sizeNeck" => $sizeNeck, "sizeStomach" => $sizeStomach
+                "weight" => $weight, "sizeNeck" => $sizeNeck, "sizeStomach" => $sizeStomach, "sizeHaunch" => $sizeHaunch
             ]
         );
     }
