@@ -57,31 +57,9 @@ function chartView() {
             ]
         },
         options: {
-            legend: true,
+            legend: false,
             tooltips: false,
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        min: 0,
-                        max: 10
-                    },
-                    gridLines: {
-                        color: '#888',
-                        drawOnChartArea: false
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        max: 8,
-                        padding: 10
-                    },
-                    gridLines: {
-                        color: '#888',
-                        drawOnChartArea: false
-                    }
-                }]
-            }
+
         }
     });
 }

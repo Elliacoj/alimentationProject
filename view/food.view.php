@@ -28,9 +28,10 @@ $allPersonalData = \Amaur\App\manager\PersonalDataManager::get();
 <div id="foodPageDiv">
     <h2>Alimentation</h2>
     <div>
-        <h3>Données corporel actuelles</h3>
+        <h3>Données corporelles actuelles</h3>
         <div>Pourcentage de masse graisseuse: <span><?= $fatMass ?></span></div>
-        <div>Indice de masse corporel: <span><?= $imc ?></span></div>
+        <div>Indice de masse corporelle: <span><?= $imc ?></span></div>
+        <button><a href="index.php?controller=saveAuto&action=save&id=ok">Envoyer</a></button>
     </div>
 
     <div>

@@ -5,6 +5,7 @@ namespace Amaur\App\manager;
 use Amaur\App\entity\PersonalData;
 
 class PersonalDataManager extends Manager {
+
     /**
      * Return a personal data of user or null
      * @param $userFk
