@@ -132,7 +132,7 @@ button {
     color: #912b2b;
 }
 
-button:hover {
+button:hover, #profileDiv a:hover {
     color: orangered;
 }
 
@@ -143,4 +143,18 @@ button:hover {
 
 #profileDiv span {
     color: #6fa6f3;
+}
+
+#profileDiv a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #912b2b;
+    height: 100%;
+    padding: 1rem;
+}
+
+.buttonA {
+    padding: 0 !important;
 }

@@ -56,23 +56,18 @@ function updatePersonalData() {
         document.getElementById("firstnameSpan").innerHTML = response['firstname'];
         document.getElementById("lastnameSpan").innerHTML = response['lastname'];
 
-        document.getElementById("sizeSpan").innerHTML = response['size'];
-        document.getElementById("weightSpan").innerHTML = response['weight'];
-        document.getElementById("sizeNeckSpan").innerHTML = response['sizeNeck'];
-        document.getElementById("sizeStomachSpan").innerHTML = response['sizeStomach'];
+        response['sex'] === 0 ? document.getElementById("sexSpan").innerHTML = "H" : document.getElementById("sexSpan").innerHTML = "F";
+        response['size'] === "" ? document.getElementById("sizeSpan").innerHTML = "" : document.getElementById("sizeSpan").innerHTML = response['size'] +" cm";
+        response['weight'] === "" ? document.getElementById("weightSpan").innerHTML = "" : document.getElementById("weightSpan").innerHTML = response['weight'] +" Kg";
+        response['sizeNeck'] === "" ? document.getElementById("sizeNeckSpan").innerHTML = "" : document.getElementById("sizeNeckSpan").innerHTML = response['sizeNeck'] + " cm";
+        response['sizeStomach'] === "" ? document.getElementById("sizeStomachSpan").innerHTML = "" : document.getElementById("sizeStomachSpan").innerHTML = response['sizeStomach'] + " cm";
 
-
-        let sex = document.getElementById("sexSpan");
-        response['sex'] = 0 ? sex.innerHTML = "H" : sex.innerHTML = "F";
-
-        if(response['birthday'] !== "") {
-            let dateB = new Date(response['birthday']);
+        if(response['birthday'] !== "" && response['birthday'] !== null) {
+            let dateB = new Date((response['birthday']));
             let dateA = new Date();
-            let interval = dateB.getDate() - dateA.getDate();
-            console.log(dateA.getTime());
-            console.log(dateB.getTime());
+            let interval = (new Date((dateA.getTime() - (dateB.getTime())))).getTime()/1000/60/60/24/365;
 
-            /*document.getElementById("birthdaySpan").innerHTML = date;*/
+            document.getElementById("birthdaySpan").innerHTML = Math.floor(interval).toString() + " ans" ;
         }
     }
 }

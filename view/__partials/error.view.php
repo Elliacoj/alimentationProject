@@ -13,5 +13,8 @@ if(isset($_GET['error'])) {
         case 3: ?>
             <div class="errorRed errorDiv">L'adresse ou le mot de passe n'est pas correct!</div> <?php
             break;
+        case 4: ?>
+            <div class="errorGreen errorDiv">Vous avez été déconnecté!</div> <?php
+            break;
     }
 }

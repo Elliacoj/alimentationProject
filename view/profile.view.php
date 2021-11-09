@@ -31,5 +31,5 @@ $sizeStomach = ($data['personalData']->getSizeStomach() === "" ? '': $data['pers
         <div>Tour de ventre: <span id="sizeStomachSpan"><?= $sizeStomach ?></span></div>
     </div>
     <button id="updateProfile" data-idUser="<?= $_SESSION['id'] ?>">Mettre à jour</button>
-    <button>Se déconnecter</button>
+    <button class="buttonA"><a href="index.php?controller=user&action=logout">Se déconnecter</a></button>
 </div>
