@@ -16,5 +16,8 @@ if(isset($_GET['error'])) {
         case 4: ?>
             <div class="errorGreen errorDiv">Vous avez été déconnecté!</div> <?php
             break;
+        case 5: ?>
+            <div class="errorRed errorDiv">Vous devez être connecté!</div> <?php
+            break;
     }
 }

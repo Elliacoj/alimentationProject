@@ -11,7 +11,7 @@ class ErrorView {
      */
     init() {
         if(this.errorDiv) {
-            setTimeout(function () {
+            setTimeout(() => {
                 this.errorDiv.animate([
                     {height: '50px'},
                     {height: '0'}

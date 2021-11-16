@@ -17,7 +17,13 @@ class HomePageController extends Controller {
      * Redirects into food page
      */
     function foodPage() {
-        $personalData = PersonalDataManager::searchUserFk($_SESSION['id']);
-        self::renders("food", "Page d'alimentation", ["personalData" => $personalData]);
+        if(isset($_SESSION['id'])) {
+            $personalData = PersonalDataManager::searchUserFk($_SESSION['id']);
+            self::renders("food", "Page d'alimentation", ["personalData" => $personalData]);
+        }
+        else {
+            header("Location: index.php?error=5");
+        }
+
     }
 }
