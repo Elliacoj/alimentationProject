@@ -1,3 +1,5 @@
+@import "menuFooter.css";
+@import "mediaQuery.css";
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +22,7 @@ a {
 }
 
 #logoPrincipal {
-    background-image: url("/doc/Self-eat.jpg");
+    /*background-image: url("doc/Self-eat.jpg");*/
     width: 50rem;
     height: 18rem;
     background-size: 100%;
