@@ -1,5 +1,6 @@
 <?php
-//$FatMass = ($data['personalData']->getSizeNeck() !== "" && $data['personalData']->getSizeStomach() && )
+use Amaur\App\manager\PersonalDataManager;
+
 if($data['personalData']->getSizeNeck()!== "" && $data['personalData']->getSize()!== "" && $data['personalData']->getSizeStomach()!== "") {
     if($data['personalData']->getSex() === 0) {
         $fatMass = round(86.010 * log10($data['personalData']->getSizeStomach() - $data['personalData']->getSizeNeck()) - 70.041 * log10($data['personalData']->getSize()) + 30.30, 2) . " %";
@@ -22,7 +23,7 @@ else {
     $imc = '<a href="index.php?controller=user">Compléter votre profil</a>';
 }
 
-$allPersonalData = \Amaur\App\manager\PersonalDataManager::get();
+$allPersonalData = PersonalDataManager::get();
 
 ?>
 <div id="foodPageDiv">
@@ -31,7 +32,6 @@ $allPersonalData = \Amaur\App\manager\PersonalDataManager::get();
         <h3>Données corporelles actuelles</h3>
         <div>Pourcentage de masse graisseuse: <span><?= $fatMass ?></span></div>
         <div>Indice de masse corporelle: <span><?= $imc ?></span></div>
-        <button><a href="index.php?controller=saveAuto&action=save&id=ok">Envoyer</a></button>
     </div>
 
     <div>

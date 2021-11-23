@@ -20,7 +20,7 @@ class Ajax {
 
         let xml = new XMLHttpRequest();
         xml.responseType = "json";
-        xml.open("SEARCH", "/api/personalData/crud.php");
+        xml.open("SEARCH", "/api/personalData/index.php");
         xml.send();
         xml.onload = function () {
             let response = xml.response;
@@ -45,7 +45,7 @@ class Ajax {
             });
 
             windows.remove();
-            windows.update("/api/personalData/crud.php");
+            windows.update("/api/personalData/index.php");
 
             let confirmModal = document.getElementById("confirmModal");
             confirmModal.addEventListener("click", function() {
@@ -58,7 +58,7 @@ class Ajax {
     updatePersonalData() {
         let xml = new XMLHttpRequest();
         xml.responseType = "json";
-        xml.open("SEARCH" , "/api/personalData/crud.php")
+        xml.open("SEARCH" , "/api/personalData/index.php")
         xml.send();
         xml.onload = function() {
             let response = xml.response;
