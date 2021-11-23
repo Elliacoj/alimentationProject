@@ -1,28 +1,36 @@
 import {ModalWindows} from "./ModalWindows.js";
 
 class Ajax {
+    /**
+     * Constructor
+     */
     constructor() {
         this.updateProfile = document.getElementById("updateProfile");
+        this.check = true;
     }
 
+    /**
+     * Init ajax dataUser
+     */
     init() {
         if(this.updateProfile) {
-            this.updateProfile.addEventListener("click", () => this.modal());
+            this.updateProfile.addEventListener("click", () => {
+                if(this.check === true) {
+                    this.modal();
+                    this.check = false;
+                }
+            });
         }
     }
 
     modal() {
-        let modal = this.modal;
         let update = this.updatePersonalData;
-        let updateP = this.updateProfile;
-
-        updateP.removeEventListener("click", modal);
 
         let xml = new XMLHttpRequest();
         xml.responseType = "json";
         xml.open("SEARCH", "/api/personalData/index.php");
         xml.send();
-        xml.onload = function () {
+        xml.onload = () => {
             let response = xml.response;
             let data = [
                 {
@@ -37,20 +45,20 @@ class Ajax {
             ];
 
             let windows = new ModalWindows("Mettre à jour", data)
-            windows.create();
+            windows.create("dataUser");
 
             let backModal = document.getElementById("backModal");
-            backModal.addEventListener("click", function () {
-                updateP.addEventListener("click", modal);
+            backModal.addEventListener("click", () => {
+                this.check = true;
             });
 
             windows.remove();
             windows.update("/api/personalData/index.php");
 
             let confirmModal = document.getElementById("confirmModal");
-            confirmModal.addEventListener("click", function() {
+            confirmModal.addEventListener("click", () => {
                 update();
-                updateP.addEventListener("click", modal);
+                this.check = true;
             });
         }
     }

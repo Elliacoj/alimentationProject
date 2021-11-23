@@ -28,14 +28,59 @@ $allPersonalData = PersonalDataManager::get();
 ?>
 <div id="foodPageDiv">
     <h2>Alimentation</h2>
-    <div>
+    <div class="subDivFood">
         <h3>Données corporelles actuelles</h3>
         <div>Pourcentage de masse graisseuse: <span><?= $fatMass ?></span></div>
         <div>Indice de masse corporelle: <span><?= $imc ?></span></div>
     </div>
 
-    <div>
-        <h3>Statistiques des données corporel</h3>
-        <canvas id="tableStat"></canvas>
+    <div class="subDivFood">
+        <h3>Régularisation des Kcalories</h3>
+        <div>
+            <div class="divKcal">
+                <div>
+                    <p>Ajouter/modifier des/les kcalories pour ajd.</p>
+                </div>
+
+                <div>
+                    <p>Choix du mois</p>
+                </div>
+            </div>
+
+            <div class="divKcal">
+                <div>
+                    <button id="buttonAddKcal">Ajouter</button>
+                </div>
+                <div>
+                    <select name="" id="">
+                        <option value="01/2021">Janvier 2021</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Kcal absorbées</th>
+                    <th>Kcal dépensées</th>
+                    <th>Différences</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>23/11/2021</td>
+                    <td>1300</td>
+                    <td>2300</td>
+                    <td>- 1000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="subDivFood">
+        <h3 id="statTitle">Statistiques des données corporel</h3>
+        <div id="divCanvas"><canvas id="tableStat"></canvas></div>
     </div>
 </div>

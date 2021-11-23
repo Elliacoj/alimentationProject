@@ -182,3 +182,53 @@ button:hover, #profileDiv a:hover {
 #foodPageDiv {
     padding: 2rem;
 }
+
+table, th, td {
+    border: 1px solid black;
+    margin: 2rem auto;
+}
+
+th {
+    padding: 1rem;
+}
+
+td {
+    text-align: center;
+    padding: 1rem 1rem;
+}
+
+.divKcal {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.divKcal div {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.divKcal div:nth-child(1) {
+    width: 70% !important;
+}
+
+.divKcal div:nth-child(2) {
+    width: 30% !important;
+}
+
+.subDivFood {
+    padding: 3rem 0;
+    border-bottom: 1px solid darkgray;
+}
+
+.divKcal button {
+    margin: 0 auto !important;
+}
+
+.divKcal select {
+    margin: 0 auto;
+}
+
+.divKcal p {
+    width: 100%;
+    text-align: center;
+}

@@ -10,7 +10,7 @@ class ModalWindows {
         this.buttonBack = document.createElement("button")
     }
 
-    create = function () {
+    create(type) {
         if(this.container) {
             this.buttonConfirm.id = "confirmModal";
             this.buttonBack.id = "backModal";
@@ -25,60 +25,12 @@ class ModalWindows {
 
             this.container.appendChild(h2);
 
-            for (let name in this.data[0]) {
-                let div = document.createElement("div");
-                let label = document.createElement("label");
-
-                label.style.cssText = "width: 100%; display: block; text-align: center;";
-                label.innerHTML = name;
-                div.className = "divModal";
-                div.appendChild(label);
-
-                if(!name.indexOf("Sex")) {
-                    let select = document.createElement("select");
-                    let option = document.createElement("option");
-                    let optionH = document.createElement("option");
-                    let optionF = document.createElement("option");
-
-                    select.style.cssText = "display: block; margin: 1rem auto; font-size: 2rem; padding: 1rem";
-                    option.innerHTML = "Choix";
-                    option.value = "";
-                    optionF.innerHTML = "Femme";
-                    optionF.value = "1";
-                    optionH.innerHTML = "Homme";
-                    optionH.value = "0";
-
-                    select.appendChild(option)
-                    select.appendChild(optionH);
-                    select.appendChild(optionF);
-                    div.appendChild(select);
-
-                    if(this.data[0][name] !== "") {
-                        select.selectedIndex = (this.data[0][name] + 1);
-                    }
-                }
-                else {
-
-                    let input = document.createElement("input");
-
-                    if(!name.indexOf("Date")) {
-                        input.type = "date";
-                    }
-
-
-                    input.style.cssText = "width: 60%; display: block; margin: 1rem auto; padding: 1rem; font-size: 2rem;";
-
-
-                    input.value = this.data[0][name];
-
-
-                    div.appendChild(input);
-                }
-
-                div.style.cssText = "width: 100%; padding: 2rem";
-
-                this.container.appendChild(div);
+            switch (type) {
+                case "dataUser":
+                    this.dataUser();
+                    break;
             }
+
             this.buttonConfirm.innerHTML = "Envoyer";
             this.buttonBack.innerHTML = "Annuler";
 
@@ -88,7 +40,64 @@ class ModalWindows {
         }
     }
 
-    remove = function() {
+    dataUser() {
+        for (let name in this.data[0]) {
+            let div = document.createElement("div");
+            let label = document.createElement("label");
+
+            label.style.cssText = "width: 100%; display: block; text-align: center;";
+            label.innerHTML = name;
+            div.className = "divModal";
+            div.appendChild(label);
+
+            if(!name.indexOf("Sex")) {
+                let select = document.createElement("select");
+                let option = document.createElement("option");
+                let optionH = document.createElement("option");
+                let optionF = document.createElement("option");
+
+                select.style.cssText = "display: block; margin: 1rem auto; font-size: 2rem; padding: 1rem";
+                option.innerHTML = "Choix";
+                option.value = "";
+                optionF.innerHTML = "Femme";
+                optionF.value = "1";
+                optionH.innerHTML = "Homme";
+                optionH.value = "0";
+
+                select.appendChild(option)
+                select.appendChild(optionH);
+                select.appendChild(optionF);
+                div.appendChild(select);
+
+                if(this.data[0][name] !== "") {
+                    select.selectedIndex = (this.data[0][name] + 1);
+                }
+            }
+            else {
+
+                let input = document.createElement("input");
+
+                if(!name.indexOf("Date")) {
+                    input.type = "date";
+                }
+
+
+                input.style.cssText = "width: 60%; display: block; margin: 1rem auto; padding: 1rem; font-size: 2rem;";
+
+
+                input.value = this.data[0][name];
+
+
+                div.appendChild(input);
+            }
+
+            div.style.cssText = "width: 100%; padding: 2rem";
+
+            this.container.appendChild(div);
+        }
+    }
+
+    remove() {
         if(this.container) {
             let container = this.container;
             this.buttonBack.addEventListener("click", function() {
@@ -97,7 +106,7 @@ class ModalWindows {
         }
     }
 
-    update = function(file) {
+    update(file) {
         if(this.container) {
             let container = this.container;
             let dataModal = this.data[1];

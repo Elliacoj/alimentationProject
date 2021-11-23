@@ -1,18 +1,22 @@
 import Chart from "chart.js/auto";
+import $ from "jquery";
+
 class ChartObj {
     /**
      * Constructor
      */
     constructor() {
+        this.ctx = document.getElementById('tableStat');
+        this.title = $("#statTitle");
+        this.parent = $("#divCanvas");
     }
 
     /**
      * Create a chart
      */
     chartView() {
-        let ctx = document.getElementById('tableStat');
-        if(ctx) {
-            const myChart = new Chart(ctx, {
+        if(this.ctx) {
+            const myChart = new Chart(this.ctx, {
                 type: 'scatter',
                 data: {
 
@@ -74,6 +78,14 @@ class ChartObj {
                 }
             });
         }
+    }
+
+    viewChart() {
+        this.parent.css("display", "none");
+        this.title.css("cursor", "pointer");
+        this.title.click(() => {
+            this.parent.fadeToggle();
+        })
     }
 }
 export {ChartObj};
