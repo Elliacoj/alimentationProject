@@ -1,49 +1,110 @@
-const webpack = require("webpack");
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+require('webpack');
+const path = require('path');
 
-module.exports = {
-    entry: {
-        front: "./assets/js/front.js"
-    },
+module.exports = (env, argv) => {
+    const config = argv.mode === 'development' ? devConfig() : prodConfig();
+    return {
+        entry: {
+            front: "./assets/js/front.js",
+        },
 
-    output: {
-        path: path.resolve(__dirname, "public/build/js"),
-        filename: "[name].js"
-    },
-
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            import: true,
-                            url: true,
-                            sourceMap: true,
-
-                        }
-
-                    }
-                ],
-
+        output: {
+            path: path.resolve(__dirname, 'public'),
+            filename: "build/js/[name].js",
+            publicPath: "/",
+            clean: {
+                keep: /index\.html|index\.php|crud\.php/,
             },
-        ]
-    },
+        },
 
-    optimization: {
-        minimizer: [
-            new CssMinimizerPlugin(),
-        ]
-    },
+        ...config
+    }
+}
 
-    plugins: [].concat([new MiniCssExtractPlugin({
-        filename: "../css/[name].css"
-    })])
+/**
+ * Mode dev
+ */
+function devConfig() {
+
+    return {
+        mode: 'development',
+        devtool: 'source-map',
+        module: {
+            rules: [
+                {
+                    test: /\.css$/i,
+                    use: ["style-loader", "css-loader"]
+                },
+                // Règles fichiers images
+                {
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {filename: 'build/images/[name][ext]'}
+                },
+            ]
+        },
+
+        devServer: {
+            host: 'localhost',
+            watchFiles: ['assets/*'],
+            static: {
+                directory: path.join(__dirname, 'public'),
+                watch: true,
+            },
+            compress: true,
+            port: 9000,
+            hot: true,
+            open: true,
+        },
+
+        optimization: {minimize: false},
+    }
+}
+
+
+/**
+ * Mode production
+ */
+function prodConfig() {
+    const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+    const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+    const TerserPlugin = require("terser-webpack-plugin");
+
+    return {
+        mode: 'production',
+        module: {
+            rules: [
+                {
+                    test: /\.css$/i,
+                    use: [MiniCssExtractPlugin.loader, "css-loader"]
+                },
+
+                // Règles fichiers images
+                {
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource',
+                    generator: {filename: 'build/images/[name][ext]'}
+                },
+
+                // Configuration de babel pour les navigateurs plus anciens.
+                {
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-object-rest-spread']
+                    }
+                },
+            ]
+        },
+
+        optimization: {
+            minimize: true,
+            minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+        },
+
+        plugins: [
+            new MiniCssExtractPlugin({ filename: "build/css/[name].css", })
+        ],
+    }
 }

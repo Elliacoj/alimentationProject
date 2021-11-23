@@ -22,7 +22,7 @@ a {
 }
 
 #logoPrincipal {
-    /*background-image: url("doc/Self-eat.jpg");*/
+    background-image: url("../images/Self-eat.jpg");
     width: 50rem;
     height: 18rem;
     background-size: 100%;

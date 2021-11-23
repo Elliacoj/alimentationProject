@@ -1,5 +1,4 @@
 <?php
-
 use Amaur\App\manager\PersonalDataManager;
 
 require_once "../../../vendor/autoload.php";
